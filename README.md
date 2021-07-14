@@ -1,2 +1,2 @@
-# curso_em_video_python
- Exercícios do Curso de Python do canal "Curso em Vídeo"
+# 🐍 **Curso em Vídeo - PYTHON** 🐍
+## Exercícios realizados durante os Mundos 01, 02 e 03
