@@ -5,41 +5,41 @@
 # notas de cada aluno individualmente.
 
 turma = []
-aluno = []
-notas = []
-media = 0
 
 while True:
-    aluno.append(input('Nome: '))
-    notas.append(float(input('1° Nota: ')))
-    notas.append(float(input('2° Nota: ')))
+    nome = (input('Nome: '))
+    n1 = (float(input('1° Nota: ')))
+    n2 = (float(input('2° Nota: ')))
+    media = (n1 + n2) / 2
 
     opcao = ' '
     while (opcao not in 'SN'):
         opcao = input('Deseja continuar? [S/N] ').upper()
 
-    aluno.append(notas[:])
-    turma.append(aluno[:])
-
-    notas.clear()
-    aluno.clear()
+    turma.append([nome, [n1, n2], media])
 
     if (opcao == 'N'):
         break
 
-print('^^' * 15)
+print('^^' * 16)
 print(f'{"BOLETIM ESCOLAR":^30}')
-print('^^' * 15)
-print(f'{"N°":<3} Nome {"Média":>20}')
-print('-' * 30)
+print('^^' * 16)
+print(f'{"N°":<3} {"Nome":<10} {"Média"} {"Resultado":>10}')
+print('-' * 32)
 
 for key, aluno in enumerate(turma):
-    media = (aluno[1][0] + aluno[1][1]) / 2
 
-    print(f'{key:<3} {aluno[0]:<20} {media:.2f}')
+    if (aluno[2] >= 7.0):
+        resultado = 'Aprovado'
+    elif (aluno[2] <= 5.0):
+        resultado = 'Reprovado'
+    else:
+        resultado = 'Recuperação'
+
+    print(f'{key:<3} {aluno[0]:<10} {aluno[2]:.2f} {resultado:>12}')
 
 while True:
-    print('-' * 30)
+    print('-' * 32)
     n = int(input('Mostrar notas de qual aluno? (999 para parar) '))
 
     if (n == 999):
