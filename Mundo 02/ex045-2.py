@@ -3,38 +3,45 @@
 # Crie um programa que faça o computador jogar Jokenpô com você.
 
 import random
+from time import sleep
 
-print('*' * 40)
+jokenpo = {
+    'pedra_papel' : 'Papel embrulha pedra!',
+    'pedra_tesoura': 'Pedra quebra tesoura!',
+    'papel_tesoura': 'Tesoura corta papel!',
+    'igualdade': 'Empate!'}
+
+cores = {0: '\033[m',
+         1: '\033[1;31m',
+         2: '\033[1;35m',
+         3: '\033[1;36m'}
+
+print(cores[1],'*' * 40)
 print('               Jokenpô              ')
 print('*' * 40)
 
 jogador = input('Você quer pedra, papel ou tesoura?  ').strip().lower()
 computador = random.choice(['pedra', 'papel', 'tesoura'])
 
-print(f'Jogador escolheu {jogador} e computador {computador}.')
+sleep(0.5)
+print(cores[0], 'JO...')
+sleep(0.5)
+print(cores[2], 'KEN...')
+sleep(0.5)
+print(cores[3], 'PÔ!')
+sleep(1)
 
-if (jogador == 'pedra'):
-  if (computador == 'papel'):
-    print('Papel embrulha pedra!')
-  elif (computador == 'tesoura'):
-    print('Pedra quebra tesoura!')
-  else:
-    print('Empate!')
-elif (jogador == 'papel'):
-  if (computador == 'pedra'):
-    print('Papel embrulha pedra!')
-  elif (computador == 'tesoura'):
-    print('Tesoura corta papel!')
-  else:
-    print('Empate!')
-elif (jogador == 'tesoura'):
-  if (computador == 'pedra'):
-    print('Pedra que tesoura!')
-  elif (computador == 'papel'):
-    print('Tesoura corta papel!')
-  else:
-    print('Empate')
+print(f'{cores[0]}Jogador escolheu {cores[1]} {jogador} {cores[0]} e computador {cores[1]} {computador} {cores[0]}.')
 
-print('*' * 40)
+if ((jogador == 'pedra' and computador == 'papel') or (jogador == 'papel' and computador == 'pedra')):
+  print(jokenpo['pedra_papel'])
+elif ((jogador == 'pedra' and computador == 'tesoura') or (jogador == 'tesoura' and computador == 'pedra')):
+  print(jokenpo['pedra_tesoura'])
+elif ((jogador == 'papel' and computador == 'tesoura') or (jogador == 'tesoura' and computador == 'papel')):
+  print(jokenpo['papel_tesoura'])
+else:
+  print(jokenpo['igualdade'])
+
+print(cores[1],'*' * 40)
 print('             Fim de Jogo            ')
 print('*' * 40)

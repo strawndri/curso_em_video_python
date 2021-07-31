@@ -3,5 +3,5 @@
 import math
 
 numero = float(input('Digite um número: '))
-n_inteiro = math.trunc(numero)
+n_inteiro = math.ceil(numero)
 print(f'A porção inteira do seu número é {n_inteiro}')
