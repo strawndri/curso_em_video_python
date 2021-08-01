@@ -21,7 +21,7 @@ while True:
     usuario['Ano de Contratação'] = int(input('Ano de contratação: '))
     usuario['Salário'] = float(input('Salário atual:'))
 
-    usuario['Aposentadoria'] = 35 - (ano_atual - usuario['Ano de Contratação'])
+    usuario['Aposentadoria'] = (35 - (ano_atual - usuario['Ano de Contratação']) ) + usuario['Idade']
 
     if (len(usuario) == 6):
       break
