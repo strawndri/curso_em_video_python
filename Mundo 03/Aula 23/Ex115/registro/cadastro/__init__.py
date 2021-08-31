@@ -4,24 +4,15 @@ from Aula_23.Ex115.registro.interface import *
 import json
 from time import sleep
 
-arquivo = open('./cadastrados.txt', 'r')
-a = arquivo.read()
-
 usuario = {}
-pessoas = []
 
-try:
-    pessoas = json.loads(a)
-except:
-    pessoas = []
-
-def lista():
+def lista(pessoas):
     if (len(pessoas) == 0):
         opcao = input('''Não há pessoas na lista,
 Deseja Cadastrar um novo usuário? [S/N] ''').upper().split()[0]
 
         if (opcao == 'S'):
-            cadastrar()
+            cadastrar(pessoas)
     else:
         formatar('Pessoas Cadastradas', 'roxo', linha=True)
 
@@ -29,7 +20,7 @@ Deseja Cadastrar um novo usuário? [S/N] ''').upper().split()[0]
             print(f'{item["nome"]:<40} {item["idade"]} anos')
 
 
-def cadastrar():
+def cadastrar(pessoas):
     usuario['nome'] = input('Nome: ')
     usuario['idade'] = (input('Idade: '))
 
@@ -45,7 +36,7 @@ def salvar(usuario):
     arquivo.close()
 
 
-def sistema():
+def sistema(pessoas):
 
     while True:
 
@@ -73,11 +64,11 @@ def sistema():
         if (escolha == 1):
             formatar('Carregando Lista de Cadastrados...', 'amarelo', linha=True)
             sleep(1)
-            lista()
+            lista(pessoas)
         elif (escolha == 2):
             formatar('Carregando Sistema de Cadastro...', 'amarelo', linha=True)
             sleep(1)
-            cadastrar()
+            cadastrar(pessoas)
         else:
             formatar('> Fim da Execução. Obrigada por utilizar o sistema.', 'roxo', linha=True)
             sleep(1)
