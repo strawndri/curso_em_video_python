@@ -6,22 +6,41 @@
 
 from registro import arquivo as a
 from registro import cadastro as c
+from registro import interface as i
+from time import sleep
 import json
 
 arquivo = 'cadastrados.txt'
 
-if (a.encontrado(arquivo) == False):
-    a.criarArquivo(arquivo)
+while True:
+    if (a.encontrado(arquivo) == False):
 
-arquivo = open('./cadastrados.txt', 'r')
-arquivo = arquivo.read()
+        i.formatar('[ERRO] -- O Programa não pode ser iniciado', 'vermelho', linha=True)
+        opcao = input('Deseja criar um arquivo para continuar? [S/N] ').upper().split()[0]
 
-try:
-    pessoas = json.loads(arquivo)
-except:
-    pessoas = []
+        if (opcao == 'S'):
+            i.formatar('Aguarde um momento...', 'roxo', linha=True)
+            sleep(2)
+            a.criarArquivo(arquivo)
+            arquivo = open('./cadastrados.txt', 'r')
+            arquivo = arquivo.read()
+        else:
+            i.formatar('Obrigada por utilizar nosso sistema.', 'roxo', linha=True)
+            sleep(1)
+            break
 
-c.sistema(pessoas)
+    try:
+        pessoas = json.loads(arquivo)
+    except:
+        pessoas = []
+
+    c.sistema(pessoas)
+    break
+
+
+
+
+
 
 
 
