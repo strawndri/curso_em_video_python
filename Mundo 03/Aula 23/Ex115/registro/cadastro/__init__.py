@@ -1,20 +1,9 @@
-cores = {'normal': '\033[01;m',
-         'vermelho': '\033[01;31m',
-         'amarelo': '\033[01;33m',
-         'roxo': '\033[01;35m'}
-
-
-def formatar(texto, cor=cores['normal'], linha=False):
-    if (linha == True):
-
-        print(f'{cores["normal"]}-' * 50)
-        print(f'{cores[cor]}{texto}{cores["normal"]}'.center(60))
-        print(f'{cores["normal"]}-' * 50)
-    else:
-        print(f'{cores[cor]} {texto} {cores["normal"]}')
-
 #-------------------------------------------------------------------------------
+from Aula_23.Ex115.registro.interface import *
+
 import json
+from time import sleep
+
 arquivo = open('./cadastrados.txt', 'r')
 a = arquivo.read()
 
@@ -49,6 +38,13 @@ def cadastrar():
 
     salvar(pessoas)
 
+
+def salvar(usuario):
+    arquivo = open('./cadastrados.txt', 'w')
+    arquivo.write(json.dumps(usuario))
+    arquivo.close()
+
+
 def sistema():
 
     while True:
@@ -75,17 +71,19 @@ def sistema():
                     continue
 
         if (escolha == 1):
+            formatar('Carregando Lista de Cadastrados...', 'amarelo', linha=True)
+            sleep(1)
             lista()
         elif (escolha == 2):
+            formatar('Carregando Sistema de Cadastro...', 'amarelo', linha=True)
+            sleep(1)
             cadastrar()
         else:
-            formatar('> Fim da Execução. Obrigada por utilizar o sistema.', 'roxo')
+            formatar('> Fim da Execução. Obrigada por utilizar o sistema.', 'roxo', linha=True)
+            sleep(1)
+            break
 
 
-def salvar(usuario):
-    arquivo = open('./cadastrados.txt', 'w')
-    arquivo.write(json.dumps(usuario))
-    arquivo.close()
 
 
 
